@@ -1,5 +1,4 @@
-import CodeEditor from "./pages/Code";
-import Home from "./pages/Home";
+import CodeEditor from "./pages/CodeEditor";
 
 function App() {
   return (
