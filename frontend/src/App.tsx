@@ -1,16 +1,13 @@
-import { Button } from "@nextui-org/react"
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <div className='bg-black w-screen h-screen'>
-      <p className='text-white'>
-        Code learn
-      </p>
-      <Button>Click Me</Button>
+      <div className="bg-black w-screen h-screen">
+        <Home />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

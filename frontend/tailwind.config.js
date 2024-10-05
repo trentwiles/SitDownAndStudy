@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 export default {
   content: [
@@ -12,5 +12,4 @@ export default {
   },
   darkMode: "class",
   plugins: [nextui()],
-}
-
+};
