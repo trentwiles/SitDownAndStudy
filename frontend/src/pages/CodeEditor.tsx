@@ -16,7 +16,9 @@ const CodeEditor: React.FC = () => {
     }
   };
 
-  const handleSubmitAndGetResult = async (expected_output: string): Promise<string> => {
+  const handleSubmitAndGetResult = async (
+    expected_output: string,
+  ): Promise<string> => {
     if (editorRef.current) {
       const code: string = editorRef.current.getCode();
       const data = await submitCode({
@@ -28,14 +30,16 @@ const CodeEditor: React.FC = () => {
       return data;
     }
     return "Error";
-  }
+  };
 
   return (
     <>
       <div className="w-screen h-screen items-center flex flex-col">
         <p className="">Code learn</p>
         <Button onClick={handleGetCode}>Click Me</Button>
-        <Button onClick={() => handleSubmitAndGetResult("Hello")}>Get result of submission</Button>
+        <Button onClick={() => handleSubmitAndGetResult("Hello")}>
+          Get result of submission
+        </Button>
         <div className="w-full h-96 p-20">
           <Editor ref={editorRef} />
         </div>
