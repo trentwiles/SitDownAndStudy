@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 *.buildinfo
+
+# for trent's laptop
+*.tsconfig
+*.tsbuildinfo
