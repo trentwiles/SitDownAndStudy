@@ -7,9 +7,19 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI,
 });
 
-async function getResponse(message) {
+JSON_FORMAT = `{"question": "", "codeStarter": ""}`;
+
+async function getResponse(
+  questionDifficulty,
+  questionLanguage,
+  randomGenerate,
+  questionTopic = ""
+) {
   if (message == null) {
     throw new Error("Message cannot be null");
+  }
+  if (randomGenerate == true) {
+    questionTopic = "Write a random question.";
   }
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -17,7 +27,8 @@ async function getResponse(message) {
       { role: "system", content: "You are a helpful assistant." },
       {
         role: "user",
-        content: message,
+        // Create a hard question
+        content: `Create a ${questionDifficulty} question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else.`,
       },
     ],
   });
