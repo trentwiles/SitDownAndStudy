@@ -1,29 +1,43 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, forwardRef, useImperativeHandle, RefObject } from 'react';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
-export const Editor = () => {
-	const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
-	const monacoEl = useRef(null);
+interface EditorProps {}
 
-	useEffect(() => {
-		if (monacoEl) {
-			setEditor((editor) => {
-				if (editor) return editor;
-        
-				return monaco.editor.create(monacoEl.current!, {
-					value: ['public class Main {\n', 
-            '\tpublic static void main(String[] args) {\n', 
-            '\t\tSystem.out.println("Hello, World");\n', 
-            '\t}', 
-            '}'].join('\n'),
-					language: 'java',
+export interface EditorHandle {
+  getCode: () => string;
+}
+
+export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
+  const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const monacoEl = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (monacoEl.current) {
+      setEditor((editor) => {
+        if (editor) return editor;
+
+        return monaco.editor.create(monacoEl.current!, {
+          value: [
+            'public class Main {',
+            '\tpublic static void main(String[] args) {',
+            '\t\tSystem.out.println("Hello, World");',
+            '\t}',
+            '}'
+          ].join('\n'),
+          language: 'java',
           theme: 'vs-dark',
-				});
-			});
-		}
+        });
+      });
+    }
 
-		return () => editor?.dispose();
-	}, [monacoEl.current]);
+    return () => editor?.dispose();
+  }, [monacoEl.current]);
 
-	return <div className={"w-full h-full"} ref={monacoEl}></div>;
-};
+  useImperativeHandle(ref, () => ({
+    getCode: () => {
+      return editor?.getValue() || '';
+    }
+  }));
+
+  return <div className="w-full h-full" ref={monacoEl}></div>;
+});
