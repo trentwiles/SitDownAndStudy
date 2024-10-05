@@ -17,7 +17,7 @@ async function getResponse(
 ) {
 
   if (randomGenerate == true) {
-    questionTopic = "Write a random question.";
+    questionTopic = `anything you find to be useful.`;
   }
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -26,7 +26,7 @@ async function getResponse(
       {
         role: "user",
         // Create a hard question
-        content: `Create a ${questionDifficulty} question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Include linebreaks in the starter code. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else.`,
+        content: `Create a ${questionDifficulty} coding question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Include linebreaks in the starter code. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else.`,
       },
     ],
   });
