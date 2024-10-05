@@ -1,5 +1,12 @@
-import { useRef, useState, useEffect, forwardRef, useImperativeHandle, RefObject } from 'react';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import {
+  useRef,
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  RefObject,
+} from "react";
+import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 interface EditorProps {}
 
@@ -8,7 +15,8 @@ export interface EditorHandle {
 }
 
 export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
-  const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const [editor, setEditor] =
+    useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const monacoEl = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -18,14 +26,14 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
 
         return monaco.editor.create(monacoEl.current!, {
           value: [
-            'public class Main {',
-            '\tpublic static void main(String[] args) {',
+            "public class Main {",
+            "\tpublic static void main(String[] args) {",
             '\t\tSystem.out.println("Hello, World");',
-            '\t}',
-            '}'
-          ].join('\n'),
-          language: 'java',
-          theme: 'vs-dark',
+            "\t}",
+            "}",
+          ].join("\n"),
+          language: "java",
+          theme: "vs-dark",
         });
       });
     }
@@ -35,8 +43,8 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getCode: () => {
-      return editor?.getValue() || '';
-    }
+      return editor?.getValue() || "";
+    },
   }));
 
   return <div className="w-full h-full" ref={monacoEl}></div>;

@@ -7,13 +7,13 @@ const Home: FC = () => {
       <h1>Home</h1>
       <p className="text-white">Code learn</p>
       <Button>Click Me</Button>
-      <Textarea 
-      placeholder="Write something..." 
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-        console.log(e.currentTarget.value);
-        }
-      }}
+      <Textarea
+        placeholder="Write something..."
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            console.log(e.currentTarget.value);
+          }
+        }}
       />
     </div>
   );
