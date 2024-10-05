@@ -1,10 +1,11 @@
+import CodeEditor from "./pages/Code";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <div className="bg-black w-screen h-screen">
-        <Home />
+      <div className="w-screen h-screen">
+        <CodeEditor />
       </div>
     </>
   );
