@@ -1,10 +1,10 @@
-import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <>
       <div className="w-screen h-screen bg-gray-600 dark">
-        <Home />        
+        <LandingPage />        
       </div>
     </>
   );
