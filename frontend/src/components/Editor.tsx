@@ -26,13 +26,9 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
 
         return monaco.editor.create(monacoEl.current!, {
           value: [
-            "public class Main {",
-            "\tpublic static void main(String[] args) {",
-            '\t\tSystem.out.println("Hello, World");',
-            "\t}",
-            "}",
+            "print('Hello!')",
           ].join("\n"),
-          language: "java",
+          language: "python",
           theme: "vs-dark",
         });
       });

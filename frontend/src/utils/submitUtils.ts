@@ -7,7 +7,21 @@ interface Submission {
   expected_output?: string;
 }
 
-export const submitCode = async (submission: Submission) => {
+interface Response {
+  stdout: string; 
+  time: string;   
+  memory: number; 
+  stderr: string | null; 
+  token: string; 
+  compile_output: string | null; 
+  message: string | null; 
+  status: {
+      id: number; 
+      description: string; 
+  };
+}
+
+export const submitCode = async (submission: Submission): Promise<Response> => {
   const url =
     "https://judge.asahoo.dev/submissions/?base64_encoded=false&wait=true";
   try {

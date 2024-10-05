@@ -1,20 +1,36 @@
 import { Button } from "@nextui-org/react";
 import { Editor } from "../components/Editor";
-import { useRef } from "react";
-import { submitCode, getResult } from "../utils/submitUtils";
+import { useRef, useState } from "react";
+import { submitCode } from "../utils/submitUtils";
 interface EditorRef {
   getCode: () => string;
 }
 
+interface Output {
+  status: string;
+  expected_out: string;
+  actual_out: string;
+  time_taken: string;
+}
+
 const CodeEditor: React.FC = () => {
   const editorRef = useRef<EditorRef | null>(null);
+  const [output, setOutput] = useState<Output>({
+    status: "",
+    expected_out: "",
+    actual_out: "",
+    time_taken: "",
+  });
+  const [displaySol, setDisplaySol] = useState(false);
 
-  const handleGetCode = (): void => {
-    if (editorRef.current) {
-      const code: string = editorRef.current.getCode();
-      console.log(code);
-    }
-  };
+  const exp_output = "Hello, World!";
+
+  // const handleGetCode = (): void => {
+  //   if (editorRef.current) {
+  //     const code: string = editorRef.current.getCode();
+  //     console.log(code);
+  //   }
+  // };
 
   const handleSubmitAndGetResult = async (
     expected_output: string,
@@ -27,7 +43,14 @@ const CodeEditor: React.FC = () => {
         expected_output: expected_output,
       });
       console.log("Result returned:", data);
-      return data;
+      setOutput({
+        status: data.status.description,
+        expected_out: expected_output,
+        actual_out: data.stdout,
+        time_taken: data.time,
+      });
+      setDisplaySol(true);
+      return "Success";
     }
     return "Error";
   };
@@ -36,13 +59,21 @@ const CodeEditor: React.FC = () => {
     <>
       <div className="w-screen h-screen items-center flex flex-col">
         <p className="">Code learn</p>
-        <Button onClick={handleGetCode}>Click Me</Button>
-        <Button onClick={() => handleSubmitAndGetResult("Hello")}>
-          Get result of submission
-        </Button>
-        <div className="w-full h-96 p-20">
+        <p>Question: Modify the print to print out "Hello, World!" instead.</p>
+        <div className="w-full h-96 p-8">
           <Editor ref={editorRef} />
         </div>
+        <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
+          Run Code
+        </Button>
+        {displaySol && (
+          <div>
+            <p>Expected Output: {output.expected_out}</p>
+            <p>Actual Output: {output.actual_out}</p>
+            <p>Status: {output.status}</p>
+            <p>Time Taken: {output.time_taken}</p>
+          </div>
+        )}
       </div>
     </>
   );
