@@ -7,7 +7,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI,
 });
 
-var JSON_FORMAT = '{"question": "", "codeStarter": ""}';
+var JSON_FORMAT = '{"question": "", "codeStarter": "", "expectedOutput": "", "exampleSolution": ""}';
 
 async function getResponse(
   questionDifficulty,
@@ -22,11 +22,11 @@ async function getResponse(
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
-      { role: "system", content: "You are a helpful assistant." },
+      { role: "system", content: "You are a helpful assistant who only responds in JSON." },
       {
         role: "user",
         // Create a hard question
-        content: `Create a ${questionDifficulty} coding question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Include linebreaks in the starter code. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else.`,
+        content: `Create a ${questionDifficulty} coding question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Include linebreaks in the starter code and backslash t's instead of tabs. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else. Make sure expectedOutput is what the code should return/print out. Make sure exampleSolution is an example of a code solution to the code starter.`,
       },
     ],
   });
