@@ -4,7 +4,6 @@ import {
   useEffect,
   forwardRef,
   useImperativeHandle,
-  RefObject,
 } from "react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
@@ -14,7 +13,7 @@ export interface EditorHandle {
   getCode: () => string;
 }
 
-export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
+export const Editor = forwardRef<EditorHandle, EditorProps>((_, ref) => {
   const [editor, setEditor] =
     useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const monacoEl = useRef<HTMLDivElement | null>(null);
