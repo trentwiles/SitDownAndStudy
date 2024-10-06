@@ -6,7 +6,9 @@ const PORT = 3001;
 
 app.use(express.json());
 
-
+app.get("/", (req, res) => {
+  res.redirect("https://www.youtube.com/watch?v=x81mdCH_FnQ")
+})
 
 app.get('/getQuestion', async (req, res) => {
   const x = await chatgpt("hard", "java", false, "iterate through a hashmap")
