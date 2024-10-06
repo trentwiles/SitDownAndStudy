@@ -3,6 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CopyBlock, atomOneDark } from 'react-code-blocks';
 import axios from "axios";
+import { RotateSpinner } from "react-spinners-kit";
 
 interface SummaryProps {
   title: string;
@@ -25,6 +26,8 @@ const Home: FC = () => {
     footer_conclusion: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const BASE_URL = "https://api.sitdownand.study";
   axios.defaults.baseURL = BASE_URL;
 
@@ -39,14 +42,23 @@ const Home: FC = () => {
   };
 
   const handleTopicSummary = (topic: string, language: string) => {
+    setIsLoading(true);
     axios.post("/topicSummary", {topic: topic, language: language}).then((res) => {
       setModalData(res.data);
+      setIsLoading(false);
       setIsModalOpen(true);
     });
   }
 
   return (
     <>
+    {isLoading && <div className="absolute top-3/4 flex items-center justify-center w-full z-30">
+          <RotateSpinner 
+            size={50} 
+            loading={isLoading} 
+            color="#0000FF"
+          />
+        </div>}
     <Modal scrollBehavior="outside" size="5xl" className="dark" isOpen={isModalOpen} onOpenChange={onModalOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -74,8 +86,13 @@ const Home: FC = () => {
           )}
         </ModalContent>
       </Modal>
-    <div className="flex items-center flex-col h-full w-full relative">
-      <h1 className="text-3xl font-mono text-white">sitdownand.study</h1>
+    <div className="flex flex-col h-full w-full relative items-center">
+      {/* <h1 className="text-3xl font-mono text-white">sitdownand.study</h1> */}
+      <div className="bg-gradient-to-r mt-32 p-4 from-sky-800 to-amber-400 bg-clip-text text-transparent">
+              <h1 className="text-9xl font-qwitcherb">
+                Sit Down & Study
+              </h1>
+            </div>
       <div className="w-full px-24 py-8 my-auto text-4xl">
       {/* backdrop-blur-sm backdrop-brightness-125" */}
         <Textarea
