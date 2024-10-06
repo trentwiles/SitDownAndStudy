@@ -19,6 +19,9 @@ async function getResponse(
   randomGenerate,
   questionTopic = ""
 ) {
+  if (questionLanguage == "javascript") {
+    questionLanguage = "NodeJS"
+  }
   if (randomGenerate == true) {
     questionTopic = `anything you find to be useful.`;
   }
@@ -32,7 +35,7 @@ async function getResponse(
       {
         role: "user",
         // Create a hard question
-        content: `Create a ${questionDifficulty} coding question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. Include linebreaks in the starter code and backslash t's instead of tabs. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else. Make sure expectedOutput is what the code should return/print out. Make sure exampleSolution is an example of a code solution to the code starter.`,
+        content: `Create a ${questionDifficulty} coding question related to ${questionTopic}. Expect the implementation to be in ${questionLanguage}, and provide sample code. If the implementation is in Java, make sure that the class is Main. Include linebreaks in the starter code and backslash t's instead of tabs. Follow this format: ${JSON_FORMAT}, and return only the data in that format, nothing else. Make sure expectedOutput is what the code should return/print out. Make sure exampleSolution is an example of a code solution to the code starter.`,
       },
     ],
   });
@@ -44,6 +47,9 @@ async function getResponse(
 }
 
 async function getTopicResponse(topic, language) {
+  if(language == "javascript") {
+    language = "NodeJS"
+  }
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
@@ -72,6 +78,9 @@ async function getTopicResponse(topic, language) {
 }
 
 async function getTopicSummary(topic, language) {
+  if(language == "javascript"){
+    language = "NodeJS"
+  }
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
