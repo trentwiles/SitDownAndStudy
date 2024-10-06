@@ -24,9 +24,7 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((_, ref) => {
         if (editor) return editor;
 
         return monaco.editor.create(monacoEl.current!, {
-          value: [
-            "print('Hello!')",
-          ].join("\n"),
+          value: ["print('Hello!')"].join("\n"),
           language: "python",
           theme: "vs-dark",
         });
