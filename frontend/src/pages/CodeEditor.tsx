@@ -57,17 +57,16 @@ const CodeEditor: React.FC = () => {
 
   return (
     <>
-      <div className="w-screen h-screen items-center flex flex-col">
-        <p className="">Code learn</p>
-        <p>Question: Modify the print to print out "Hello, World!" instead.</p>
-        <div className="w-full h-96 p-8">
+      <div className="w-full h-full items-center flex flex-col relative p-8">
+        <p className="text-white text-3xl">Question: Modify the print to print out "Hello, World!" instead.</p>
+        <div className="w-full h-96 m-4">
           <Editor ref={editorRef} />
         </div>
         <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
           Run Code
         </Button>
         {displaySol && (
-          <div>
+          <div className="text-white ">
             <p>Expected Output: {output.expected_out}</p>
             <p>Actual Output: {output.actual_out}</p>
             <p>Status: {output.status}</p>
