@@ -22,6 +22,7 @@ const CodeEditor: React.FC = () => {
     time_taken: "",
   });
   const [displaySol, setDisplaySol] = useState(false);
+  const [starterCode, setStarterCode] = useState<string>("print('Hello!')");
 
   const exp_output = "Hello, World!";
 
@@ -60,7 +61,7 @@ const CodeEditor: React.FC = () => {
       <div className="w-full items-center flex flex-col relative p-8">
         <div className="flex flex-row gap-2  w-full flex-grow p-2">
           <div className="w-full h-96 rounded-xl bg-[#1d1d1d] p-2">
-            <Editor ref={editorRef} />
+            <Editor ref={editorRef} starterCode={starterCode} />
           </div>
           <div className="text-white rounded-lg text-3xl w-full my-auto text-center font-mono">
             <p>Question:</p>
@@ -71,14 +72,15 @@ const CodeEditor: React.FC = () => {
           <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
             Run Code
           </Button>
-          <Button>Reset</Button>
-          <Button>More Hints</Button>
+          <Button>Reset Editor</Button>
+          <Button>Hint</Button>
+          <Button>Do another similar question</Button>
           <Button>View Solution</Button>
         </div>
         {displaySol && (
           <div className="text-white text-2xl h-full rounded-2xl text-center bg-gray-900 p-6">
-            <p>Expected Output: {output.expected_out}</p>
-            <p>Actual Output: {output.actual_out}</p>
+            <p className="mb-1">Expected Output: <span className="font-mono bg-gray-600 p-1">{output.expected_out}</span></p>
+            <p>Actual Output: <span className="font-mono bg-gray-600 p-1">{output.actual_out}</span></p>
             <p>
               Status:{" "}
               <span
