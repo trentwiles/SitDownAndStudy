@@ -90,7 +90,7 @@ async function getTopicSummary(topic, language) {
       },
       {
         role: "user",
-        content: `Could you provide a consise example of ${topic} along with an example in ${language}? Follow the following format: ${JSON_FORMAT_TOPIC_SUM}, and only respond with this JSON format. Make sure to come up with a brief title.`,
+        content: `Could you provide a consise example of ${topic} along with an example in ${language}? Follow the following format: ${JSON_FORMAT_TOPIC_SUM}, and only respond with this JSON format. Make sure to come up with a brief title. However, if the example requested has nothing to do with the language, just return a random topic about the language in the given format.`,
       },
     ],
   });
