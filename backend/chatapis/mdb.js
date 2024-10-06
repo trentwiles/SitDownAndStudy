@@ -3,10 +3,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const uri = process.env.MONGO_CONNECTION;
-const client = new MongoClient(uri);
-
 async function select(uuid) {
+  const uri = process.env.MONGO_CONNECTION;
+  const client = new MongoClient(uri);
   try {
     const database = client.db("historydb");
     const history = database.collection("history");
@@ -16,7 +15,7 @@ async function select(uuid) {
     if (reqs != null) {
       return reqs;
     } else {
-      return null;
+      return {};
     }
   } finally {
     // Ensures that the client will close when you finish/error
@@ -25,6 +24,8 @@ async function select(uuid) {
 }
 
 async function insert(uuid, hist) {
+  const uri = process.env.MONGO_CONNECTION;
+  const client = new MongoClient(uri);
   // history should be a string
   try {
     const database = client.db("historydb");

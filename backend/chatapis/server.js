@@ -1,5 +1,6 @@
 import express from 'express';
 import chatgpt from "../chatapis/index.js";
+import mdb from './mdb.js';
 
 const app = express();
 const PORT = 3001;
@@ -50,7 +51,19 @@ app.get("/getHistory", async (req, res) => {
   if(id == null) {
     return res.status(400).send(JSON.parse(`{"error": true}`))
   }
-  return res.send()
+  const query = await mdb.select(id) 
+  return res.send(query)
+})
+
+app.post("/updateHistory", async (req, res) => {
+  const id = req.body.uuid
+  const topic = req.body.topic
+  if(id == null || topic == null) {
+    return res.status(400).send(JSON.parse(`{"error": true}`))
+  }
+
+  const worked = await mdb.insert(id, topic)
+  return res.send(JSON.parse(`{"status": ${worked}}`))
 })
 
 app.listen(PORT, () => {
