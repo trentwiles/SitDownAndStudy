@@ -7,13 +7,15 @@ import {
 } from "react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
-interface EditorProps {}
+interface EditorProps {
+  starterCode: string;
+}
 
 export interface EditorHandle {
   getCode: () => string;
 }
 
-export const Editor = forwardRef<EditorHandle, EditorProps>((_, ref) => {
+export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
   const [editor, setEditor] =
     useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const monacoEl = useRef<HTMLDivElement | null>(null);
@@ -24,7 +26,7 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((_, ref) => {
         if (editor) return editor;
 
         return monaco.editor.create(monacoEl.current!, {
-          value: ["print('Hello!')"].join("\n"),
+          value: [props.starterCode].join("\n"),
           language: "python",
           theme: "vs-dark",
         });
