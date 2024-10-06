@@ -13,11 +13,6 @@ app.get("/", (req, res) => {
   res.redirect("https://www.youtube.com/watch?v=x81mdCH_FnQ")
 })
 
-app.get('/getQuestion', async (req, res) => {
-  const x = await chatgpt("hard", "java", false, "iterate through a hashmap")
-  return res.send(x);
-});
-
 app.post('/getQuestion', async (req, res) => {
   const qDiff = req.body.difficulty
   const qLang = req.body.language
