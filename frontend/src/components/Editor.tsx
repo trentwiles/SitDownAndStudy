@@ -9,6 +9,7 @@ import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 interface EditorProps {
   starterCode: string[];
+  language: string;
 }
 
 export interface EditorHandle {
@@ -27,7 +28,7 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
         console.log('Starter code in editor', props.starterCode);
         return monaco.editor.create(monacoEl.current!, {
           value: props.starterCode.join("\n"),
-          language: "python",
+          language: props.language,
           theme: "vs-dark",
         });
       });

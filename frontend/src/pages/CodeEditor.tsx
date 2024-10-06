@@ -107,7 +107,7 @@ const CodeEditor: React.FC = () => {
 
   return (
     <>
-      <Modal size="5xl" className="dark" isOpen={isModalOpen} onOpenChange={onModalOpenChange}>
+      <Modal scrollBehavior="outside" size="5xl" className="dark" isOpen={isModalOpen} onOpenChange={onModalOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -118,6 +118,7 @@ const CodeEditor: React.FC = () => {
                   theme={atomOneDark}
                   text={gptData.exampleSolution}
                   language={state.language}
+                  wrapLongLines={true}
                   showLineNumbers={true}
                 />
                 </p>
@@ -125,9 +126,6 @@ const CodeEditor: React.FC = () => {
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
                 </Button>
               </ModalFooter>
             </>
@@ -147,7 +145,7 @@ const CodeEditor: React.FC = () => {
           <>
             <div className="flex flex-row gap-4  w-full flex-grow px-8 pt-8 py-4">
               <div className="w-full h-96 rounded-xl bg-[#1d1d1d] p-8">
-                <Editor ref={editorRef} starterCode={gptData.codeStarter.split('\n')} />
+                <Editor ref={editorRef} language={state.language} starterCode={gptData.codeStarter.split('\n')} />
               </div>
               <div className="text-white rounded-lg text-3xl w-full my-auto text-center font-mono">
                 <p>Question:</p>
@@ -158,7 +156,7 @@ const CodeEditor: React.FC = () => {
               <Button onClick={() => handleSubmitAndGetResult(gptData.expectedOutput)}>
                 Run Code
               </Button>
-              <Button>Reset Editor</Button>
+              <Button>View History</Button>
               <Button onClick={() => navigate('/home', {state: {language: state.language}})}>Learn Something Else</Button>
               <Button onClick={() => generateQuestionFromGPT()}>Do another question</Button>
               <Button onClick={() => setIsModalOpen(true)}>View Solution</Button>
