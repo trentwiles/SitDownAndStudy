@@ -86,7 +86,7 @@ const Home: FC = () => {
           value={topic}
           onValueChange={(value) => setTopic(value)}
         />
-        <div className="w-full flex flex-row gap-1 items-center justify-center py-4">
+        <div className="w-full flex flex-row gap-4 items-center justify-center py-4">
         <Button
             size="lg"
             className="bg-white text-indigo-600 py-2 px-4 rounded-lg shadow-lg hover:bg-gray-200 text-xl"

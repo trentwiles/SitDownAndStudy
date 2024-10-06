@@ -52,6 +52,11 @@ const CodeEditor: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const onModalOpenChange = () => setIsModalOpen(!isModalOpen);
   
+  const languageCodes: { [key: string]: number } = {
+    python: 71,
+    javascript: 63,
+    java: 62,
+  }
 
   const BASE_URL = "https://api.sitdownand.study";
   axios.defaults.baseURL = BASE_URL;
@@ -67,7 +72,7 @@ const CodeEditor: React.FC = () => {
       const code: string = editorRef.current.getCode();
       const data = await submitCode({
         source_code: code,
-        language_id: 71,
+        language_id: languageCodes[state.language],
         expected_output: expected_output,
       });
       console.log("Result returned:", data);

@@ -14,7 +14,7 @@ const ParticleBackground = React.memo(() => {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
+  const particlesLoaded = async (_?: Container): Promise<void> => {
     console.log("Particles loaded");
   };
 
