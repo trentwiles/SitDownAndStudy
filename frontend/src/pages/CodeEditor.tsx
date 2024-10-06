@@ -1,7 +1,9 @@
 import { Button } from "@nextui-org/react";
 import { Editor } from "../components/Editor";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { submitCode } from "../utils/submitUtils";
+import { useLocation } from "react-router-dom";
+
 interface EditorRef {
   getCode: () => string;
 }
@@ -11,6 +13,11 @@ interface Output {
   expected_out: string;
   actual_out: string;
   time_taken: string;
+}
+
+interface StateProps {
+  language: string;
+  topic: string;
 }
 
 const CodeEditor: React.FC = () => {
@@ -24,14 +31,10 @@ const CodeEditor: React.FC = () => {
   const [displaySol, setDisplaySol] = useState(false);
   const [starterCode, setStarterCode] = useState<string>("print('Hello!')");
 
+  const location = useLocation();
+  const state: StateProps = location.state as StateProps;
+  console.log(location.state);
   const exp_output = "Hello, World!";
-
-  // const handleGetCode = (): void => {
-  //   if (editorRef.current) {
-  //     const code: string = editorRef.current.getCode();
-  //     console.log(code);
-  //   }
-  // };
 
   const handleSubmitAndGetResult = async (
     expected_output: string,
@@ -55,6 +58,23 @@ const CodeEditor: React.FC = () => {
     }
     return "Error";
   };
+
+  useEffect(() => {
+    console.log("CodeEditor mounted");
+    console.log(state);
+    handleGetQuestion(state);
+  }
+  , []);
+
+  const handleGetQuestion = async (state: StateProps) => {
+    console.log("Getting new question...");
+    console.log("using topic", state.topic);
+    console.log("using language", state.language);
+    await setTimeout(() => {
+      console.log("Got new question!");
+    }, 2000);
+    setStarterCode("print('Hello!')");
+  }
 
   return (
     <>
