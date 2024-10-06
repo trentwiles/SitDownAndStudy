@@ -66,6 +66,18 @@ app.post("/updateHistory", async (req, res) => {
   return res.send(JSON.parse(`{"status": ${worked}}`))
 })
 
+app.post("/topicSummary", async (req, res) => {
+  const topicToSum = req.body.topic
+  const language = req.body.language
+
+  if(topicToSum == null || language == null) {
+    return res.status(400).send(JSON.parse(`{"error": true}`))
+  }
+
+  const result = await chatgpt.getTopicSummary(topicToSum, language)
+  return res.send(result);
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

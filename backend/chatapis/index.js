@@ -7,8 +7,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI,
 });
 
-var JSON_FORMAT =
+const JSON_FORMAT =
   '{"question": "", "codeStarter": "", "expectedOutput": "", "exampleSolution": ""}';
+
+const JSON_FORMAT_TOPIC_SUM = `{"text_summary": "", "code_example": "", "footer_conclusion": ""}`;
 
 async function getResponse(
   questionDifficulty,
@@ -68,4 +70,25 @@ async function getTopicResponse(topic, language) {
   throw new Error("Refusal from ChatGPT (illegal response)");
 }
 
-export default { getResponse, getTopicResponse };
+async function getTopicSummary(topic, language) {
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: "You are a helpful assistant who only responds in JSON.",
+      },
+      {
+        role: "user",
+        content: `Could you provide a consise example of ${topic} along with an example in ${language}? Follow the following format: ${JSON_FORMAT_TOPIC_SUM}, and only respond with this JSON format.`,
+      },
+    ],
+  });
+
+  if (completion.choices[0].refusal == null) {
+    return JSON.parse(completion.choices[0].message["content"]);
+  }
+  throw new Error("Refusal from ChatGPT (illegal response)");
+}
+
+export default { getResponse, getTopicResponse, getTopicSummary };
