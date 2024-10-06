@@ -58,16 +58,16 @@ const CodeEditor: React.FC = () => {
   return (
     <>
       <div className="w-full items-center flex flex-col relative p-8">
-        <div className="flex flex-row gap-2 w-full bg-blue-500 flex-grow p-2">
+        <div className="flex flex-row gap-2  w-full flex-grow p-2">
           <div className="w-full h-96 rounded-xl bg-[#1d1d1d] p-2">
             <Editor ref={editorRef} />
           </div>
-          <div className="text-gray-800 rounded-lg text-3xl w-full h-full bg-white text-center my-auto font-mono">
+          <div className="text-white rounded-lg text-3xl w-full my-auto text-center font-mono">
             <p>Question:</p>
             <p>Modify the print to print out "Hello, World!" instead.</p>
           </div>
         </div>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 my-3 bg-gray-900 rounded-2xl p-2">
           <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
             Run Code
           </Button>
@@ -76,11 +76,11 @@ const CodeEditor: React.FC = () => {
           <Button>View Solution</Button>
         </div>
         {displaySol && (
-          <div className="text-white ">
+          <div className="text-white text-2xl h-full rounded-2xl text-center bg-gray-900 p-6">
             <p>Expected Output: {output.expected_out}</p>
             <p>Actual Output: {output.actual_out}</p>
-            <p>Status: {output.status}</p>
-            <p>Time Taken: {output.time_taken}</p>
+            <p>Status: <span className={`${output.status == "Accepted" ? "text-green-500" : "text-red-500"}`}>{output.status}</span></p>
+            <p>Time Taken: {output.time_taken}s</p>
           </div>
         )}
       </div>
