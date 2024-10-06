@@ -2,7 +2,7 @@ import express from 'express';
 import chatgpt from "../chatapis/index.js";
 
 const app = express();
-const PORT = 47283;
+const PORT = 3001;
 
 app.use(express.json());
 
