@@ -20,7 +20,9 @@ const LandingPage = () => {
       <div className="min-h-screen min-w-screen flex flex-col relative">
         <header className="flex-grow text-white flex items-center justify-center">
           <div className="text-center px-4">
-            <h1 className="text-4xl md:text-8xl font-qwitcherb">Sit Down & Study</h1>
+            <div className="py-4 bg-gradient-to-r from-sky-500 to-amber-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-9xl font-qwitcherb">Sit Down & Study</h1>
+            </div>
             <p className="mt-4 text-lg md:text-xl">
               An easy way to practice your favorite programming languages.
             </p>
