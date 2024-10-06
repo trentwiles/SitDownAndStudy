@@ -10,13 +10,23 @@ import axios from "axios"
  */
 
 const data = {
-  "difficulty": "hard",
-  "language": "c++",
+  "difficulty": "medium",
+  "language": "java",
   "isRandom": false,
-  "question": "removing the @ from an email address"
+  "question": "creating a junit test"
 }
 
-axios.post("http://localhost:3000", data)
+const topic_data = {
+  "topic": "creating junit tests",
+  "language": "java"
+}
+
+axios.post("http://localhost:3000/getQuestion", data)
+  .then( function(result) {
+    console.log(result.data)
+  })
+
+axios.post("http://localhost:3000/getTopic", topic_data)
   .then( function(result) {
     console.log(result.data)
   })

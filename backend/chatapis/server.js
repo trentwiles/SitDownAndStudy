@@ -6,12 +6,14 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get('/', async (req, res) => {
+
+
+app.get('/getQuestion', async (req, res) => {
   const x = await chatgpt("hard", "java", false, "iterate through a hashmap")
   return res.send(x);
 });
 
-app.post('/', async (req, res) => {
+app.post('/getQuestion', async (req, res) => {
   const qDiff = req.body.difficulty
   const qLang = req.body.language
   const isRandom = req.body.isRandom
@@ -25,7 +27,18 @@ app.post('/', async (req, res) => {
     return res.status(400).send(JSON.parse(`{"error": true}`))
   }
 
-  const result = await chatgpt(qDiff, qLang, isRandom, q)
+  const result = await chatgpt.getResponse(qDiff, qLang, isRandom, q)
+  return res.send(result)
+})
+
+app.post("/getTopic", async (req, res) => {
+  const topic = req.body.topic
+  const language = req.body.language
+  if(topic == null || language == null) {
+    return res.status(400).send(JSON.parse(`{"error": true}`))
+  }
+
+  const result = await chatgpt.getTopicResponse(topic, language)
   return res.send(result)
 })
 
