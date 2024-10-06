@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ParticleBackground from "../components/Particles";
 
 const LandingPage = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
-
-  const handleOptionChange = (event) => {
+  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
   };
 
-  
-
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if(selectedOption != "") {
-      window.location = `/${selectedOption}`;
+    if (selectedOption !== "") {
+      console.log(selectedOption);
     }
   };
+
   return (
     <>
-    {/* <ParticleBackground/> */}
-    <div className="z-100 min-h-screen  flex flex-col">
+    <ParticleBackground/>
+    <div className="z-10 min-h-screen min-w-screen flex flex-col relative">
       {/* Hero Section */}
-      <header className="flex-grow bg-indigo-600 text-white flex items-center justify-center">
+      <header className="flex-grow text-white flex items-center justify-center">
         <div className="text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold">Sit Down & Study</h1>
           <p className="mt-4 text-lg md:text-xl">
@@ -49,10 +47,10 @@ const LandingPage = () => {
       </header>
 
       {/* Footer */}
-      <footer className="bg-white py-4">
-        <div className="max-w-7xl mx-auto text-center text-gray-600">
-          Developed by <a href="https://www.trentwiles.com/">Trent Wiles</a> &{" "}
-          <a href="https://asahoo.dev">Anish Sahoo</a>
+      <footer className="py-4 bg-transparent">
+        <div className="max-w-7xl mx-auto text-center text-gray-200">
+          Developed by <a href="https://www.trentwiles.com/" className="hover:underline">Trent Wiles</a> &{" "}
+          <a className="hover:underline" href="https://asahoo.dev">Anish Sahoo</a>
         </div>
       </footer>
     </div>
