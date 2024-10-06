@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ParticleBackground from "../components/Particles";
+import { Button } from "@nextui-org/react";
 
 const LandingPage = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,8 +17,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <ParticleBackground />
-      <div className="z-10 min-h-screen min-w-screen flex flex-col relative">
+      <div className="min-h-screen min-w-screen flex flex-col relative">
         <header className="flex-grow text-white flex items-center justify-center">
           <div className="text-center px-4">
             <h1 className="text-4xl md:text-6xl font-bold">Sit Down & Study</h1>
@@ -29,23 +28,23 @@ const LandingPage = () => {
               id="options"
               value={selectedOption}
               onChange={handleOptionChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-3 py-2 mt-8 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
             >
               <option value="">Pick a Language</option>
               <option value="python">Python</option>
               <option value="javascript">Javascript</option>
               <option value="java">Java</option>
             </select>
-            <button
-              className="mt-8 bg-white text-indigo-600 py-2 px-4 rounded-lg shadow-lg hover:bg-gray-200"
+            <Button
+              className={`mt-4 bg-white text-indigo-600 py-2 px-4 rounded-lg shadow-lg hover:bg-gray-200 ${selectedOption === "" ? "opacity-0" : ""}`}
               onClick={handleSubmit}
             >
               Get Started
-            </button>
+            </Button>
           </div>
         </header>
         <footer className="py-4 bg-transparent">
-          <div className="max-w-7xl mx-auto text-center text-gray-200">
+          <div className="max-w-7xl mx-auto text-center text-gray-300">
             Developed by{" "}
             <a href="https://www.trentwiles.com/" className="hover:underline">
               Trent Wiles
