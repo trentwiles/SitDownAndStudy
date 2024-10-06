@@ -10,4 +10,10 @@ Practice any skill in any programming language.
 
 ## Active Domains
 * Web App - https://sitdownand.study
-* API/Backend - https://sdas-apis.trentwil.es
+* API/Backend - https://api.asahoo.dev, https://sdas-apis.trentwil.es
+
+## Goals
+- make gpt generate question
+- if student got it right, add option to go to next question or stop
+  - option to view solution
+- may add some 'lecture slides'
