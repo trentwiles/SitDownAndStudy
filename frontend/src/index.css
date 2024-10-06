@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Qwitcher';
-  src: url('./assets/QwitcherGrypen-Regular.ttf') format('truetype');
+  font-family: "Qwitcher";
+  src: url("./assets/QwitcherGrypen-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'QwitcherBold';
-  src: url('./assets/QwitcherGrypen-Bold.ttf') format('truetype');
+  font-family: "QwitcherBold";
+  src: url("./assets/QwitcherGrypen-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }

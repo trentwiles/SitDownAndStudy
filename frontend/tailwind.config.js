@@ -10,10 +10,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        qwitcher: ['Qwitcher', 'sans-serif'],
-        qwitcherb: ['QwitcherBold', 'sans-serif'],
+        qwitcher: ["Qwitcher", "sans-serif"],
+        qwitcherb: ["QwitcherBold", "sans-serif"],
       },
-    }
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

@@ -57,14 +57,24 @@ const CodeEditor: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-full items-center flex flex-col relative p-8">
-        <p className="text-white text-3xl">Question: Modify the print to print out "Hello, World!" instead.</p>
-        <div className="w-full h-96 m-4">
-          <Editor ref={editorRef} />
+      <div className="w-full items-center flex flex-col relative p-8">
+        <div className="flex flex-row gap-2 w-full bg-blue-500 flex-grow p-2">
+          <div className="w-full h-96 rounded-xl bg-[#1d1d1d] p-2">
+            <Editor ref={editorRef} />
+          </div>
+          <div className="text-gray-800 rounded-lg text-3xl w-full h-full bg-white text-center my-auto font-mono">
+            <p>Question:</p>
+            <p>Modify the print to print out "Hello, World!" instead.</p>
+          </div>
         </div>
-        <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
-          Run Code
-        </Button>
+        <div className="flex flex-row gap-2">
+          <Button onClick={() => handleSubmitAndGetResult(exp_output)}>
+            Run Code
+          </Button>
+          <Button>Reset</Button>
+          <Button>More Hints</Button>
+          <Button>View Solution</Button>
+        </div>
         {displaySol && (
           <div className="text-white ">
             <p>Expected Output: {output.expected_out}</p>

@@ -7,7 +7,7 @@ import CodeEditor from "./pages/CodeEditor";
 function App() {
   return (
     <>
-      <ParticleBackground/>  
+      <ParticleBackground />
       <div className="w-screen h-screen bg-gray-600 dark z-10">
         <BrowserRouter>
           <Routes>

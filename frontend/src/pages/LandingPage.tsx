@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const navigate = useNavigate();
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
@@ -11,7 +13,7 @@ const LandingPage = () => {
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (selectedOption !== "") {
-      console.log(selectedOption);
+      navigate(`/home`, { state: { language: selectedOption } });
     }
   };
 
@@ -21,7 +23,9 @@ const LandingPage = () => {
         <header className="flex-grow text-white flex items-center justify-center">
           <div className="text-center px-4">
             <div className="py-24 bg-gradient-to-r from-sky-500 to-amber-500 bg-clip-text text-transparent">
-              <h1 className="text-4xl md:text-[200px] font-qwitcherb">Sit Down & Study</h1>
+              <h1 className="text-4xl md:text-[200px] font-qwitcherb">
+                Sit Down & Study
+              </h1>
             </div>
             <p className="mt-4 text-lg md:text-xl">
               An easy way to practice your favorite programming languages.

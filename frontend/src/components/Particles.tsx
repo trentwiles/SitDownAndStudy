@@ -15,7 +15,7 @@ const ParticleBackground = React.memo(() => {
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log('Particles loaded');
+    console.log("Particles loaded");
   };
 
   const options: ISourceOptions = useMemo(

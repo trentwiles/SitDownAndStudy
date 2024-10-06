@@ -40,5 +40,5 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((_, ref) => {
     },
   }));
 
-  return <div className="w-full h-full" ref={monacoEl}></div>;
+  return <div className="h-full" ref={monacoEl}></div>;
 });
