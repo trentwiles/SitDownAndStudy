@@ -31,9 +31,8 @@ Features
   * DNS: Cloudflare
   * Languages: JavaScript/TypeScript (JS/TS)
 
-Active Domains
+Active Domain
 * Web App: https://sitdownand.study
-* APIs/Backend: https://api.asahoo.dev and https://sdas-apis.trentwil.es
 
 Goals
 - [x] Generate coding questions using GPT tailored to any programming language.
