@@ -79,7 +79,14 @@ const CodeEditor: React.FC = () => {
           <div className="text-white text-2xl h-full rounded-2xl text-center bg-gray-900 p-6">
             <p>Expected Output: {output.expected_out}</p>
             <p>Actual Output: {output.actual_out}</p>
-            <p>Status: <span className={`${output.status == "Accepted" ? "text-green-500" : "text-red-500"}`}>{output.status}</span></p>
+            <p>
+              Status:{" "}
+              <span
+                className={`${output.status == "Accepted" ? "text-green-500" : "text-red-500"}`}
+              >
+                {output.status}
+              </span>
+            </p>
             <p>Time Taken: {output.time_taken}s</p>
           </div>
         )}
