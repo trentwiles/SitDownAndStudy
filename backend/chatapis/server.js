@@ -44,6 +44,15 @@ app.post("/getTopic", async (req, res) => {
   return res.send(result)
 })
 
+app.get("/getHistory", async (req, res) => {
+  // format: /getHistory?id=12345...
+  const id = req.query.id
+  if(id == null) {
+    return res.status(400).send(JSON.parse(`{"error": true}`))
+  }
+  return res.send()
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
