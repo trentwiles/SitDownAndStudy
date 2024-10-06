@@ -3,6 +3,7 @@ import { Editor } from "../components/Editor";
 import { useRef, useState, useEffect } from "react";
 import { submitCode } from "../utils/submitUtils";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface EditorRef {
   getCode: () => string;
@@ -30,6 +31,9 @@ const CodeEditor: React.FC = () => {
   });
   const [displaySol, setDisplaySol] = useState(false);
   const [starterCode, setStarterCode] = useState<string>("print('Hello!')");
+
+  const BASE_URL = "https://api.sitdownand.study";
+  axios.defaults.baseURL = BASE_URL;
 
   const location = useLocation();
   const state: StateProps = location.state as StateProps;
@@ -67,6 +71,11 @@ const CodeEditor: React.FC = () => {
     }
     console.log("CodeEditor mounted");
     console.log(state);
+    
+    axios.post("/getTopic", state).then((res) => {
+      console.log(res.data);
+    }
+    );
     handleGetQuestion(state);
   }
   , []);
