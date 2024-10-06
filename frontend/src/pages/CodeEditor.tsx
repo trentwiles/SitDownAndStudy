@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react";
 import { Editor } from "../components/Editor";
 import { useRef, useState, useEffect } from "react";
 import { submitCode } from "../utils/submitUtils";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface EditorRef {
   getCode: () => string;
@@ -35,6 +35,7 @@ const CodeEditor: React.FC = () => {
   const state: StateProps = location.state as StateProps;
   console.log(location.state);
   const exp_output = "Hello, World!";
+  const navigate = useNavigate();
 
   const handleSubmitAndGetResult = async (
     expected_output: string,
@@ -60,6 +61,10 @@ const CodeEditor: React.FC = () => {
   };
 
   useEffect(() => {
+    if(!state?.language || !state?.topic) {
+      console.log("Redirecting to landing page, error with state");
+      navigate("/");
+    }
     console.log("CodeEditor mounted");
     console.log(state);
     handleGetQuestion(state);
@@ -67,9 +72,6 @@ const CodeEditor: React.FC = () => {
   , []);
 
   const handleGetQuestion = async (state: StateProps) => {
-    console.log("Getting new question...");
-    console.log("using topic", state.topic);
-    console.log("using language", state.language);
     await setTimeout(() => {
       console.log("Got new question!");
     }, 2000);

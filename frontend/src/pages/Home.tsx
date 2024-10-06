@@ -1,11 +1,17 @@
 import { Button, Textarea } from "@nextui-org/react";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Home: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [topic, setTopic] = useState<string>("");
+
+  useEffect(() => {
+    if (!location.state?.language) {
+      navigate("/"); // Redirect to "/" if language is missing
+    }
+  }, [location, navigate]);
 
   const handleStartQuestions = (topic: string) => {
     navigate("/editor", { state: { language: location.state.language, topic: topic } });
@@ -20,7 +26,7 @@ const Home: FC = () => {
           className="text-2xl p-8 text-white rounded-2xl bg-gray-900" 
           size="lg"
           variant="bordered"
-          placeholder={`What topic related to ${location.state.language} do you want to learn today?...`}
+          placeholder={`What topic related to ${location.state?.language} do you want to learn today?...`}
           value={topic}
           onValueChange={(value) => setTopic(value)}
         />
