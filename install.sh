@@ -12,6 +12,7 @@ npm i
 cd ..
 cd backend
 npm i
+cd ..
 
 # check for docker
 if ! command -v docker &> /dev/null

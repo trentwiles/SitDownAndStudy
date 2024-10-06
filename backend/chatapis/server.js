@@ -1,11 +1,13 @@
 import express from 'express';
 import chatgpt from "../chatapis/index.js";
 import mdb from './mdb.js';
+import cors from "cors";
 
 const app = express();
 const PORT = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.redirect("https://www.youtube.com/watch?v=x81mdCH_FnQ")

@@ -1,10 +1,8 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
-import cors from "cors";
 
 dotenv.config();
 
-app.use(cors());
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI,
