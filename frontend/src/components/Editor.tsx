@@ -8,7 +8,7 @@ import {
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 interface EditorProps {
-  starterCode: string;
+  starterCode: string[];
 }
 
 export interface EditorHandle {
@@ -24,9 +24,9 @@ export const Editor = forwardRef<EditorHandle, EditorProps>((props, ref) => {
     if (monacoEl.current) {
       setEditor((editor) => {
         if (editor) return editor;
-
+        console.log('Starter code in editor', props.starterCode);
         return monaco.editor.create(monacoEl.current!, {
-          value: [props.starterCode].join("\n"),
+          value: props.starterCode.join("\n"),
           language: "python",
           theme: "vs-dark",
         });
