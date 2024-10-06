@@ -11,7 +11,7 @@ const openai = new OpenAI({
 const JSON_FORMAT =
   '{"question": "", "codeStarter": "", "expectedOutput": "", "exampleSolution": ""}';
 
-const JSON_FORMAT_TOPIC_SUM = `{"text_summary": "", "code_example": "", "footer_conclusion": ""}`;
+const JSON_FORMAT_TOPIC_SUM = `{"title": "", "text_summary": "", "code_example": "", "footer_conclusion": ""}`;
 
 async function getResponse(
   questionDifficulty,
@@ -81,7 +81,7 @@ async function getTopicSummary(topic, language) {
       },
       {
         role: "user",
-        content: `Could you provide a consise example of ${topic} along with an example in ${language}? Follow the following format: ${JSON_FORMAT_TOPIC_SUM}, and only respond with this JSON format.`,
+        content: `Could you provide a consise example of ${topic} along with an example in ${language}? Follow the following format: ${JSON_FORMAT_TOPIC_SUM}, and only respond with this JSON format. Make sure to come up with a brief title.`,
       },
     ],
   });
