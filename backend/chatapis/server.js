@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
   const x = await chatgpt("hard", "java", false, "iterate through a hashmap")
-  res.send(x);
+  return res.send(x);
 });
 
 app.post('/', async (req, res) => {
@@ -18,15 +18,15 @@ app.post('/', async (req, res) => {
   const q = req.body.question
 
   if(qDiff == null || qLang == null || isRandom == null) {
-    res.status(400).send(JSON.parse(`{"error": true}`))
+    return res.status(400).send(JSON.parse(`{"error": true}`))
   }
 
   if (isRandom == true && q == null) {
-    res.status(400).send(JSON.parse(`{"error": true}`))
+    return res.status(400).send(JSON.parse(`{"error": true}`))
   }
 
   const result = await chatgpt(qDiff, qLang, isRandom, q)
-  res.send(result)
+  return res.send(result)
 })
 
 app.listen(PORT, () => {
