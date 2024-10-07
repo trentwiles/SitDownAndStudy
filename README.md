@@ -31,13 +31,16 @@ Features
   * DNS: Cloudflare
   * Languages: JavaScript/TypeScript (JS/TS)
 
-Active Domain
+## Active Domain
 * Web App: https://sitdownand.study
 
-Goals
+## Goals
 - [x] Generate coding questions using GPT tailored to any programming language.
 - [x] Allow users to run their code directly in the browser through Judge0, with instant results.
 - [x] Provide hints and educational resources to guide users in problem-solving.
 - [x] Offer solutions and allow users to continue practicing or stop after each problem.
 - [ ] *(Coming Soon)* Add lecture slides for more comprehensive learning.
 
+## Future Features
+* Show error details for submitted code
+* Switch to Google Gemini instead of ChatGPT 4
