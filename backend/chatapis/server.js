@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  return res.text("API for SitDownAnd.Study");
+  return res.send("API for SitDownAnd.Study");
 })
 
 app.post('/getQuestion', async (req, res) => {
