@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.redirect("https://www.youtube.com/watch?v=x81mdCH_FnQ")
+  return res.send("API for SitDownAnd.Study");
 })
 
 app.post('/getQuestion', async (req, res) => {
